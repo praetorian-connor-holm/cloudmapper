@@ -1,18 +1,16 @@
-version: "3.8"
+version: "3.7"
 services:
   cloudmapper:
-    image: ${CLOUDMAPPER_IMAGE}
+    image: "cloudmapper-dev"
     build:
       context: .
       dockerfile: dev.Dockerfile
     environment:
       - AWS_DEFAULT_REGION=us-east-1
     volumes:
-      - ${AWS_CONF_DIR}:/root/.aws
-      - ${PRAETORIAN_TOOLS_DIR}/cloudmapper:/cloudmapper
-      - ${ENGAGEMENTS_DIR}:/engagements
-      - ${PWD}/web:/cloudmapper/web
-      - ${PWD}/account-data:/cloudmapper/account-data
+      - ${AWS_CONF_DIR}/:/root/.aws
+      - ${PWD}/web/:/cloudmapper/web
+      - ${PWD}/account-data/:/cloudmapper/account-data
     ports:
       - "8000:8000"
     command: ["/bin/bash"]
