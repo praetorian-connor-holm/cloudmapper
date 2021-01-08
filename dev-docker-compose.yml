@@ -10,7 +10,7 @@ services:
     volumes:
       - ${AWS_CONF_DIR}/:/root/.aws
       - ${PWD}/web/:/cloudmapper/web
-      - ${PWD}/account-data/:/cloudmapper/account-data
+      - ${PWD}/account-data/:/opt/cloudmapper/account-data
     ports:
       - "8000:8000"
     command: ["/bin/bash"]

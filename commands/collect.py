@@ -78,6 +78,7 @@ def call_function(outputfile, handler, method_to_call, parameters, check, summar
     }
 
     print("  Making call for {}".format(outputfile), flush=True)
+    print(method_to_call)
     try:
         for retries in range(MAX_RETRIES):
             if handler.can_paginate(method_to_call):

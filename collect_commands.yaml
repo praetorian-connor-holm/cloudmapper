@@ -411,7 +411,14 @@
   Custom_collection: True
 - Service: accessanalyzer
   Request: list-analyzers
-- Service: glue
-  Request: get-jobs
-- Service: glue
-  Request: get-triggers
+# - Service: glue
+#   Request: get-jobs
+# - Service: glue
+#   Request: get-triggers
+- Service: sagemaker
+  Request: list-notebook-instances
+- Service: sagemaker
+  Request: describe-notebook-instance
+  Parameters:
+  - Name: NotebookInstanceName
+    Value: list-notebook-instances.json|.NotebookInstances[]?|.NotebookInstanceName
