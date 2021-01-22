@@ -1147,6 +1147,26 @@ def audit_lightsail(findings, region):
             )
         )
 
+def audit_sagemaker(findings, region):
+    sagemaker_list_json = query_aws(region.account, "sagemaker-list-notebook-instances", region)
+    if not sagemaker_list_json:
+        # A Sagemaker notebook must not exist in this region (or the collect data is old)
+        return
+    for notebook in sagemaker_list_json["NotebookInstances"]:
+        notebook_json = get_parameter_file(
+            region, "sagemaker", "describe-notebook-instance", notebook["NotebookInstanceName"]
+        )
+        # If direct internet access enabled, create finding
+        if notebook_json["DirectInternetAccess"] == "Enabled":
+            findings.add(
+                Finding(
+                    region,
+                    "SAGEMAKER_DIRECT_INTERNET_ACCESS",
+                    notebook["NotebookInstanceName"], 
+                    notebook_json
+                )
+            )
+
 
 def audit(accounts):
     findings = Findings()
@@ -1201,6 +1221,7 @@ def audit(accounts):
                 audit_sqs(findings, region)
                 audit_sns(findings, region)
                 audit_lightsail(findings, region)
+                audit_sagemaker(findings, region)
             except Exception as e:
                 findings.add(
                     Finding(

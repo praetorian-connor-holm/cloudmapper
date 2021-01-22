@@ -421,4 +421,4 @@
   Request: describe-notebook-instance
   Parameters:
   - Name: NotebookInstanceName
-    Value: list-notebook-instances.json|.NotebookInstances[]?|.NotebookInstanceName
+    Value: sagemaker-list-notebook-instances.json|.NotebookInstances[]?|.NotebookInstanceName

@@ -394,3 +394,9 @@ ELBV1_DESYNC_MITIGATION:
   description: "Desync mitigation mode protects your application from issues due to HTTP Desync and should be set to 'Strictest'. https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-desync-mitigation-mode.html"
   severity: Low
   group: ELB
+
+SAGEMAKER_DIRECT_INTERNET_ACCESS:
+  title: Sagemaker direct Internet access
+  description: "This Sagemaker notebook is publicly accessible."
+  severity: Medium
+  group: SAGEMAKER
